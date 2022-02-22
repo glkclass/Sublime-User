@@ -1,0 +1,19 @@
+{
+    "file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
+    "shell_cmd": "cd /home/anton/design/cocotb_rock ; make",
+    "selector": "source.python",
+    "syntax": "Packages/User/Colored_build_output.sublime-syntax",
+    "variants":
+    [
+        {
+            "name": "Make CocoTB template",
+            "shell_cmd": "cd /home/anton/design/cocotb_repos/cocotb_template ; make",
+        },
+        {
+            "env": {"PYTHONPATH" : "../.."},
+            "name": "Make CocoTB coverage test",
+            "shell_cmd": "cd /home/anton/design/cocotb_repos/cocotb-coverage/tests/ ; make",
+        },
+    ]
+
+}
