@@ -1,30 +1,27 @@
 {
     "file_regex": "(?:xrun|xmvlog|xmelab|halcheck|halstruct|halsynth|xmsim): \\*[FEWN],[A-Z0-9]+ \\((.*),(\\d+)\\|(?:\\d*)\\): (.*)",
     "selector": "source.systemverilog",
-    "shell_cmd": "xrun -compile -disable_sem2009 $file",
+    "shell_cmd": "xrun -compile $file",
     "working_dir": "/home/anton/design/tmp/tmpsim",
     "syntax": "Packages/User/Colored_build_output.sublime-syntax",
     "variants":
         [
             {
-                "name": "Elaborate netlist",
-                "shell_cmd": "xrun -elaborate -disable_sem2009 -timescale 1ns/1ps -f /home/anton/design/ESCORT65/top_netlist/escort_vlog_netlist/netlist.filelist"
-            },
-            {
-                "name": "Simulate netlist",
-                "working_dir": "/home/anton/design/ESCORT65/digital/design/tb/tmpsim",
-                "shell_cmd": "xrun -typdelays -access +rwc -disable_sem2009 -timescale 1ns/1ps -f /home/anton/design/ESCORT65/top_netlist/escort_vlog_netlist/netlist.filelist"
-            },
-            {
                 "name": "Elaborate Escort",
                 "working_dir": "/home/anton/design/ESCORT65/digital/design/tb/tmpsim",
-                "shell_cmd": "xrun -elaborate -disable_sem2009 -timescale 1ns/1ps -f ../config/escort_tmp.flist",
+                "shell_cmd": "xrun -elaborate -f ../config/escort.cfg",
             },
             {
                 "name": "Simulate Escort",
                 "file_regex": "(?:xrun|xmvlog|xmelab|xmsim): \\*[FEWN],[A-Z0-9]+ \\((.*),(\\d+)\\|*(\\d*)\\): (.*)",
                 "working_dir": "/home/anton/design/ESCORT65/digital/design/tb/tmpsim",
-                "shell_cmd": "export GENERATE_WAVE=1 ; xrun +define+FUNCTIONAL -access +rwc -disable_sem2009 -timescale 1ns/1ps -f ../config/escort_tmp.flist",
+                "shell_cmd": "xrun +define+FUNCTIONAL -access +rwc -f ../config/escort.cfg",
+            },
+            {
+                "name": "Simulate Escort on nesx",
+                "file_regex": "(?:xrun|xmvlog|xmelab|xmsim): \\*[FEWN],[A-Z0-9]+ \\((.*),(\\d+)\\|*(\\d*)\\): (.*)",
+                "working_dir": "/home/anton/design/ESCORT65/digital/design/tb/tmpsim",
+                "shell_cmd": "rsync -av -e ssh --exclude={'tmpsim','*.log','log','.git','orig_files'} \\$ESCORT65_PATH/* nesx:\\$ESCORT65_PATH ; ssh nesx 'cd design/ESCORT65/digital/design/tb/util ; ./run_sim.sh'",
             },
             {
                 "name": "Hal Escort",
@@ -44,15 +41,15 @@
                 "name": "Simulate mbist",
                 "file_regex": "(?:xrun|xmvlog|xmelab|halcheck|xmsim): \\*[FEW],[A-Z0-9]+ \\((.*),(\\d+)\\|*(\\d*)\\): (.*)",
                 "working_dir": "/home/anton/design/ESCORT65/digital/design/tb/tmpsim",
-                "shell_cmd": "export GENERATE_WAVE=1 ; xrun -access +rwc -ieee1364 -disable_sem2009 -timescale 1ns/1ps                           /home/anton/design/ESCORT65/digital/design/tb/src/tb_param.sv                                       /home/anton/design/ESCORT65/digital/design/tb/src/tb_util.sv                                        /home/anton/design/ESCORT65/digital/design/tb/src/mbist_ttb.sv                                      /home/anton/design/ESCORT65/digital/design/tb/src/dpram_96x24.sv                                    /home/anton/design/ESCORT65/digital/design/new/seg/rtl_new/mbist.v",
+                "shell_cmd": "xrun -access +rwc -ieee1364 -disable_sem2009 -timescale 1ns/1ps                           /home/anton/design/ESCORT65/digital/design/tb/src/tb_param.sv                                       /home/anton/design/ESCORT65/digital/design/tb/src/tb_util.sv                                        /home/anton/design/ESCORT65/digital/design/tb/src/mbist_ttb.sv                                      /home/anton/design/ESCORT65/digital/design/tb/src/dpram_96x24.sv                                    /home/anton/design/ESCORT65/digital/design/new/seg/rtl_new/mbist.v",
             },
             {
                 "name": "Elaborate",
-                "shell_cmd": "xrun -elaborate -disable_sem2009 $file",
+                "shell_cmd": "xrun -elaborate $file",
             },
             {
                 "name": "Simulate",
-                "shell_cmd": "xrun -access +rwc -disable_sem2009 $file",
+                "shell_cmd": "xrun -access +rwc $file",
             },
             {
                 "name": "Hal",
@@ -72,6 +69,15 @@
                 "name": "Clean Escort",
                 "working_dir": "/home/anton/design/ESCORT65/digital/design/tb/tmpsim",
                 "shell_cmd": "xrun -clean",
+            },
+            {
+                "name": "Elaborate netlist",
+                "shell_cmd": "xrun -elaborate -disable_sem2009 -timescale 1ns/1ps -f /home/anton/design/ESCORT65/top_netlist/escort_vlog_netlist/netlist.filelist"
+            },
+            {
+                "name": "Simulate netlist",
+                "working_dir": "/home/anton/design/ESCORT65/digital/design/tb/tmpsim",
+                "shell_cmd": "xrun -typdelays -access +rwc -disable_sem2009 -timescale 1ns/1ps -f /home/anton/design/ESCORT65/top_netlist/escort_vlog_netlist/netlist.filelist"
             },
         ]
 
