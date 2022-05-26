@@ -2,30 +2,36 @@
     "file_regex": "(?:xrun|xmvlog|xmelab|halcheck|halstruct|halsynth|xmsim): \\*[FEWN],[A-Z0-9]+ \\((.*),(\\d+)\\|(?:\\d*)\\): (.*)",
     "selector": "source.systemverilog",
     "shell_cmd": "xrun -compile $file",
-    "working_dir": "/home/anton/design/tmp/tmpsim",
+    "working_dir": "/home/anton/design/ESCORT65/digital/design/new/dtop/sim",
     "syntax": "Packages/User/Colored_build_output.sublime-syntax",
+    "env": {"UTIL_PATH" : "/home/anton/design/ESCORT65/digital/design/tb/util"},
     "variants":
         [
             {
-                "name": "Elaborate Escort",
-                "working_dir": "/home/anton/design/ESCORT65/digital/design/tb/tmpsim",
-                "shell_cmd": "xrun -elaborate -f ../config/escort.cfg",
+                "name": "Escort: Elaborate",
+                "shell_cmd": "xrun -elaborate -f \\$UTIL_PATH/config/escort.cfg",
             },
             {
-                "name": "Simulate Escort",
+                "name": "Escort: Simulate",
                 "file_regex": "(?:xrun|xmvlog|xmelab|xmsim): \\*[FEWN],[A-Z0-9]+ \\((.*),(\\d+)\\|*(\\d*)\\): (.*)",
-                "working_dir": "/home/anton/design/ESCORT65/digital/design/tb/tmpsim",
-                "shell_cmd": "xrun +define+FUNCTIONAL -access +rwc -f ../config/escort.cfg",
+                "shell_cmd": "xrun +define+FUNCTIONAL -access +rwc -f \\$UTIL_PATH/config/escort.cfg",
             },
             {
-                "name": "Simulate Escort on nesx",
+                "name": "Escort: Simulate on nesx",
                 "file_regex": "(?:xrun|xmvlog|xmelab|xmsim): \\*[FEWN],[A-Z0-9]+ \\((.*),(\\d+)\\|*(\\d*)\\): (.*)",
-                "working_dir": "/home/anton/design/ESCORT65/digital/design/tb/tmpsim",
-                "shell_cmd": "rsync -av -e ssh --exclude={'tmpsim','*.log','log','.git','orig_files'} \\$ESCORT65_PATH/* nesx:\\$ESCORT65_PATH ; ssh nesx 'cd design/ESCORT65/digital/design/tb/util ; ./run_sim.sh'",
+                "shell_cmd": "rsync -av -e ssh --exclude={'xcelium.d','tmpsim','log','.git','orig_files','*.log','xrun.history'} \\$ESCORT65_PATH/* nesx:\\$ESCORT65_PATH ; ssh nesx './design/ESCORT65/digital/design/tb/util/run_sim.sh'",
             },
             {
-                "name": "Hal Escort",
-                "working_dir": "/home/anton/design/ESCORT65/digital/design/tb/tmpsim",
+                "name": "Escort: Simulate batch with cov on nesx",
+                "file_regex": "(?:xrun|xmvlog|xmelab|xmsim): \\*[FEWN],[A-Z0-9]+ \\((.*),(\\d+)\\|*(\\d*)\\): (.*)",
+                "shell_cmd": "rsync -av -e ssh --exclude={'xcelium.d','tmpsim','log','.git','orig_files','*.log','xrun.history'} \\$ESCORT65_PATH/* nesx:\\$ESCORT65_PATH ; ssh nesx './design/ESCORT65/digital/design/tb/util/run_batch_cov_sim.sh'",
+            },
+            {
+                "name": "Escort: Clean",
+                "shell_cmd": "xrun -clean",
+            },
+            {
+                "name": "Escort: Hal",
                 "shell_cmd": "xrun -hal -timescale 1ns/1ps -rulefile ../config/hal_rules.def -design_info ../config/hal_design.info -log_hal ../log/escort.hal.log -f ../config/escort_rtl.flist",
             },
             {
@@ -63,11 +69,6 @@
             },
             {
                 "name": "Clean",
-                "shell_cmd": "xrun -clean",
-            },
-            {
-                "name": "Clean Escort",
-                "working_dir": "/home/anton/design/ESCORT65/digital/design/tb/tmpsim",
                 "shell_cmd": "xrun -clean",
             },
             {
