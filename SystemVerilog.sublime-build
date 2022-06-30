@@ -4,9 +4,28 @@
     "shell_cmd": "xrun -compile $file",
     "working_dir": "/home/anton/design/ESCORT65/digital/design/new/dtop/sim",
     "syntax": "Packages/User/Colored_build_output.sublime-syntax",
-    "env": {"UTIL_PATH" : "/home/anton/design/ESCORT65/digital/design/tb/util"},
+    "env":{                                                                                                             "UTIL_PATH": "/home/anton/design/ESCORT65/digital/design/tb/util",                                              "CSI_PATH": "/home/anton/design/csi"
+    },
+
     "variants":
         [
+            {
+                "name": "CSI: Elaborate",
+                "working_dir": "/home/anton/design/csi/sim",
+                "shell_cmd": "xrun -elaborate -f \\$CSI_PATH/util/config/csi.cfg",
+            },
+            {
+                "name": "CSI: Clean",
+                "working_dir": "/home/anton/design/csi/sim",
+                "shell_cmd": "xrun -clean",
+            },
+            {
+                "name": "CSI: Simulate on nesx",
+                "working_dir": "/home/anton/design/csi/sim",
+                "file_regex": "(?:xrun|xmvlog|xmelab|xmsim): \\*[FEWN],[A-Z0-9]+ \\((.*),(\\d+)\\|*(\\d*)\\): (.*)",
+                "shell_cmd": "rsync -av -e ssh --exclude={'xcelium.d','sim','log','.git','*.log','xrun.history','LICENSE','README.md'} \\$CSI_PATH/* nesx:\\$CSI_PATH ; ssh nesx '/home/anton/design/csi/util/run_sim.sh' ; rsync -av -e ssh nesx:\\$CSI_PATH/util/log/* \\$CSI_PATH/util/log",
+            },
+
             {
                 "name": "Escort: Elaborate",
                 "shell_cmd": "xrun -elaborate -f \\$UTIL_PATH/config/escort.cfg",
