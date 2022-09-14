@@ -15,6 +15,12 @@
     "variants":
         [
             {
+                "name": "Msim",
+                "file_regex": "^[ ]*\\*\\* Error\\:+ [\\(.*\\)\\:]+ (...*?)\\(([0-9]*)\\)\\: .*$",
+                "working_dir": "c:/design/rtl_example",
+                "shell_cmd": "vlog $file"
+            },
+            {
                 "name": "CSI: Elaborate",
                 "working_dir": "/home/anton/design/csi/util/scrpt",
                 "shell_cmd": "./csi_run.sh elab",
