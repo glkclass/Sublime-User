@@ -1,4 +1,5 @@
 {
+    "swallow_startup_errors": true,
     "auto_python_builder_enabled": false,
 	"anaconda_linter_mark_style": "none",
 	"python_interpreter": "python3",
