@@ -1,0 +1,138 @@
+{
+    "build_systems": 
+    [
+        {
+            "file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
+            "name": "Anaconda Python Builder",
+            "selector": "source.python",
+            "shell_cmd": "\"python3\" -u \"$file\"",
+            "syntax": "Packages/User/Colored_build_output.sublime-syntax",
+            "env": {"PYTHONPATH" : "/home/anton/.config/sublime-text/Packages/Todo:/home/anton/design/cocotb_rock:/home/anton/design/cocotb_repos:/home/anton/design/scrpt"}
+        },
+
+
+        {
+            // Elaborate project
+            "name": "SystemVerilog CSI_TB Builder",
+            "file_regex": "(?:(?:UVM_INFO|UVM_WARNING|UVM_ERROR|UVM_FATAL) (?<file>.*)\\((?<line>\\d+)\\)(?<column>\\d*) (?<message>@.*))|(?:(?:xrun|xmvlog|xmelab|halcheck|halstruct|halsynth|xmsim): \\*[FEWN],[A-Z0-9]+ \\((?<file>.*),(?<line>\\d+)\\|(?<column>\\d*)\\): (?<message>.*))",
+            "selector": "source.systemverilog",
+            "working_dir": "c:/_d/design/csi_tb/run",
+            "syntax": "Packages/User/Colored_build_output.sublime-syntax",
+            "shell_cmd": "bash --login  ../util/scrpt/xxrun.sh -compile ../util/scrpt/sve_src.list ../util/scrpt/xrun_args.list",
+            "env":{
+             },
+
+            "variants":
+                [
+                    {
+                        // Clean CSI_TB
+                        "name": "Clean",
+                        "shell_cmd": "bash --login  ../util/scrpt/xxrun.sh -clean",
+                    },
+                    {
+                        "name": "Compile CSI_TB DUTB library",
+                        "shell_cmd": "bash --login  ../util/scrpt/xxrun.sh -compile -makelib ./dutblib ../util/scrpt/dutb_sve_src.list -endlib ../util/scrpt/dutb_xrun_args.list",
+                    },
+                    {
+                        "name": "Elaborate CSI_TB",
+                        "shell_cmd": "bash --login  ../util/scrpt/xxrun.sh -elaborate ../util/scrpt/sve_src.list ../util/scrpt/xrun_args.list",
+                    },
+                    {
+                        // Simulate CSI_TB
+                        "name": "Simulate",
+                        "shell_cmd": "bash --login  ../util/scrpt/xxrun.sh ../util/scrpt/sve_src.list ../util/scrpt/xrun_args.list",
+                    },
+                    // {
+                    //     "name": "Clean DUTB",
+                    //     "working_dir": "c:/_d/design/dutb/run",
+                    //     "shell_cmd": "bash --login  ../util/scrpt/xxrun.sh -clean",
+                    // },
+                    // {
+                    //     "name": "Compile DUTB library",
+                    //     "working_dir": "c:/_d/design/dutb/run",
+                    //     "shell_cmd": "bash --login  ../util/scrpt/xxrun.sh -compile -makelib ./dutblib ../util/scrpt/sve_src.list -endlib ../util/scrpt/xrun_args.list",
+                    // },
+                    // {
+                    //     "name": "Elaborate DUTB + CSI_TB",
+                    //     "shell_cmd": "bash --login  ../util/scrpt/xxrun.sh -elaborate ../util/scrpt/tb_csi_sve_src.list ../util/scrpt/tb_csi_xrun_args.list",
+                    // },
+                    // {
+                    //     "name": "Simulate DUTB + CSI_TB",
+                    //     "shell_cmd": "bash --login  ../util/scrpt/xxrun.sh ../util/scrpt/tb_csi_sve_src.list ../util/scrpt/tb_csi_xrun_args.list",
+                    // },
+                    // {
+                    //     "name": "Elaborate UVMTB",
+                    //     "shell_cmd": "bash --login  ../util/scrpt/xxrun.sh -elaborate ../util/scrpt/uvmtb_sve_src.list ../util/scrpt/uvmtb_xrun_args.list",
+                    // },
+                    // {
+                    //     "name": "Simulate UVMTB",
+                    //     "shell_cmd": "bash --login  ../util/scrpt/xxrun.sh ../util/scrpt/uvmtb_sve_src.list ../util/scrpt/uvmtb_xrun_args.list",
+                    // },
+                    {
+                        "name": "Compile",
+                        "working_dir": "$file_path",
+                        "shell_cmd": "bash --login  -c 'xrun -compile $file_name ; rm xrun.log xrun.history ; rm -rf xcelium.d'",
+                    },
+
+                ]
+        }
+    ],
+
+
+
+    "folders":
+    [
+
+        // CSI UVM TB project
+        {
+            "name": "csi_tb",
+            "folder_exclude_patterns": ["__pycache__", ".bpad", "work", "xcelium.d", ".build", ".simvision", "__pycache__"],
+            "path": "c:/_d/design/csi_tb",
+        },
+
+        // DUTB UVM TB project
+        {
+            "name": "dutb",
+            "folder_exclude_patterns": ["__pycache__", ".bpad", "work", "xcelium.d", ".build", ".simvision", "__pycache__"],
+            "path": "c:/_d/design/dutb",
+        },
+ 
+        // {
+        //     "folder_exclude_patterns": ["__pycache__", ".bpad", "work", "xcelium.d", ".build", ".simvision", "__pycache__"],
+        //     "path": "c:/_d/design/dut_tb",
+        // },
+        
+        {
+            "name": "--------",
+            "path": "c:/_d/tmp",
+            "folder_exclude_patterns": []
+        },
+
+        {
+            "name": "design",
+            "path": "c:/_d/design",
+            "folder_exclude_patterns":["csi_tb", "dutb", "dutb", "scrpt"],
+            "file_exclude_patterns":["*.sublime-workspace"],
+        },
+
+        {
+            "name": "Sublime Packages",
+            "path": "c:/_d/Program Files/Sublime Text/Data/Packages",
+            "folder_exclude_patterns": []
+        },
+
+
+        // {
+        //     "name": "scrpt",
+        //     "folder_exclude_patterns":["__pycache__"],
+        //     /*"file_include_patterns":[],*/
+        //     "path": "c:/_d/design/scrpt",
+        // },
+
+        // {
+        //     "name": "c",
+        //     "path": "c:/",
+        // },
+
+    ],
+}

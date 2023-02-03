@@ -1,6 +1,6 @@
 {
 	"delete_old_backups": 30,
-	"backup_dir": "C:/Users/avv/AppData/Roaming/Sublime Text/Packages/User/Sublime Text Backups",
+	"backup_dir": "c:/_d/Program Files/Sublime Text/Data/Packages/User/Sublime Backups",
 
 	// ignore files/folders which match regexes
 	"ignore_regexes": [

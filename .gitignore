@@ -1,4 +1,5 @@
-Sublime Text Backups
+*.sublime-workspace
+Sublime Backups
 Main.sublime-menu
 SystemVerilog.sublime-settings
 

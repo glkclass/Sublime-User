@@ -1,0 +1,42 @@
+{
+    "build_systems": 
+    [
+        {
+            "file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
+            "name": "Anaconda Python Builder",
+            "selector": "source.python",
+            "shell_cmd": "\"python3\" -u \"$file\"",
+            "syntax": "Packages/User/Colored_build_output.sublime-syntax",
+            "env": {"PYTHONPATH" : "/home/anton/.config/sublime-text/Packages/Todo:/home/anton/design/cocotb_rock:/home/anton/design/cocotb_repos:/home/anton/design/scrpt"}
+        }
+    ],
+    "folders":
+    [
+        // CocoTB project
+        // {
+        //     "folder_exclude_patterns": ["__pycache__", ".bpad", "work", "xcelium.d", ".build", ".simvision", "__pycache__"],
+        //     "path": "/home/anton/design/cocotb_rock",
+        // },
+        // {
+        //     "folder_exclude_patterns": ["__pycache__", ".bpad", "work", "xcelium.d", ".build", ".simvision", "__pycache__"],
+        //     "path": "/home/anton/design/cocotb_repos/cocotb_util",
+        // },
+        // {
+        //     "folder_exclude_patterns": ["__pycache__", ".bpad", "work", "xcelium.d", ".build", ".simvision", "__pycache__"],
+        //     "path": "/home/anton/design/cocotb_repos/cocotb_template",
+        // },
+        // {
+        //     "folder_exclude_patterns":
+        //     ["tb", "new", "cocotb_util", "cocotb_template_", "cocotb_rock_github"],
+        //     "path": "/home/anton/design/cocotb_repos",
+        // }
+
+        {
+            "name": "scrpt",
+            "folder_exclude_patterns":["__pycache__"],
+            /*"file_include_patterns":[],*/
+            "path": "scrpt",
+        },
+
+    ],
+}

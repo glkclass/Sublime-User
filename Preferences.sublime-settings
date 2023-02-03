@@ -4,5 +4,8 @@
 		"Vintage",
 	],
 	"save_on_focus_lost": true,
+	"file_exclude_patterns": [],
+	"show_errors_inline": true,
+
 
 }

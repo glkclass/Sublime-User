@@ -1,5 +1,8 @@
 {
-	"pythonpath": ["C:\\Users\\avv\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.8_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python38\\site-packages", "c:/prtble/sublime_text/Data/Packages/Todo", "c:/prtble/sublime_text/Data/Packages/Todo/scrpt"],
+	"pythonpath": [
+		"c:/Users/avv/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.8_qbz5n2kfra8p0/LocalCache/local-packages/Python38/site-packages",
+		"c:/Users/avv/AppData/Roaming/Sublime Text/Packages/Todo",
+		"c:/_d/design/scrpt"],
 	"extensions":["pom"],
 	"todo": {},
 }
