@@ -14,7 +14,7 @@
         {
             // Elaborate project
             "name": "SystemVerilog CSI_TB Builder",
-            "file_regex": "(?:(?:UVM_INFO|UVM_WARNING|UVM_ERROR|UVM_FATAL) (?<file>.*)\\((?<line>\\d+)\\)(?<column>\\d*) (?<message>@.*))|(?:(?:xrun|xmvlog|xmelab|halcheck|halstruct|halsynth|xmsim): \\*[FEWN],[A-Z0-9]+ \\((?<file>.*),(?<line>\\d+)\\|(?<column>\\d*)\\): (?<message>.*))",
+            "file_regex": "(?:UVM_INFO|UVM_WARNING|UVM_ERROR|UVM_FATAL|xrun|xmvlog|xmelab|halcheck|halstruct|halsynth|xmsim)(?:: \\*[FEWN],[A-Z0-9]+)* \\(*(?<file>.*)[\\(,](?<line>\\d+)\\|*(?<column>\\d*)\\):* (?<message>.*)",
             "selector": "source.systemverilog",
             "working_dir": "c:/_d/design/csi_tb/run",
             "syntax": "Packages/User/Colored_build_output.sublime-syntax",
@@ -52,14 +52,14 @@
                     //     "working_dir": "c:/_d/design/dutb/run",
                     //     "shell_cmd": "bash --login  ../util/scrpt/xxrun.sh -compile -makelib ./dutblib ../util/scrpt/sve_src.list -endlib ../util/scrpt/xrun_args.list",
                     // },
-                    // {
-                    //     "name": "Elaborate DUTB + CSI_TB",
-                    //     "shell_cmd": "bash --login  ../util/scrpt/xxrun.sh -elaborate ../util/scrpt/tb_csi_sve_src.list ../util/scrpt/tb_csi_xrun_args.list",
-                    // },
-                    // {
-                    //     "name": "Simulate DUTB + CSI_TB",
-                    //     "shell_cmd": "bash --login  ../util/scrpt/xxrun.sh ../util/scrpt/tb_csi_sve_src.list ../util/scrpt/tb_csi_xrun_args.list",
-                    // },
+                    {
+                        "name": "Elaborate DUTB + CSI_TB",
+                        "shell_cmd": "bash --login  ../util/scrpt/xxrun.sh -elaborate ../util/scrpt/tb_csi_sve_src.list ../util/scrpt/tb_csi_xrun_args.list",
+                    },
+                    {
+                        "name": "Simulate DUTB + CSI_TB",
+                        "shell_cmd": "bash --login  ../util/scrpt/xxrun.sh ../util/scrpt/tb_csi_sve_src.list ../util/scrpt/tb_csi_xrun_args.list",
+                    },
                     // {
                     //     "name": "Elaborate UVMTB",
                     //     "shell_cmd": "bash --login  ../util/scrpt/xxrun.sh -elaborate ../util/scrpt/uvmtb_sve_src.list ../util/scrpt/uvmtb_xrun_args.list",
@@ -105,13 +105,13 @@
         {
             "name": "--------",
             "path": "c:/_d/tmp",
-            "folder_exclude_patterns": []
+            "folder_exclude_patterns": ["csi_tb", "dutb"]
         },
 
         {
             "name": "design",
             "path": "c:/_d/design",
-            "folder_exclude_patterns":["csi_tb", "dutb", "dutb", "scrpt"],
+            "folder_exclude_patterns":["csi_tb", "dutb", "dut_tb", "scrpt"],
             "file_exclude_patterns":["*.sublime-workspace"],
         },
 
