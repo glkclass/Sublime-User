@@ -14,7 +14,11 @@
         {
             // Elaborate project
             "name": "SystemVerilog CSI_TB Builder",
-            "file_regex": "(?:UVM_INFO|UVM_WARNING|UVM_ERROR|UVM_FATAL|xrun|xmvlog|xmelab|halcheck|halstruct|halsynth|xmsim)(?:: \\*[FEWN],[A-Z0-9]+)* \\(*(?<file>.*)[\\(,](?<line>\\d+)\\|*(?<column>\\d*)\\):* (?<message>.*)",
+
+            // UVM_INFO ../../dutb/src/sve/dutb_agent/dutb_monitor_base.svh(45) @ 0ns: uvm_test_top.env_h.pout_agent_h.monitor_h [MNTR] Monitoring of 'dutb_txn_base' forbidden!
+            // UVM_INFO    ../../dutb/src/sve/dutb_agent/dutb_monitor_base.svh(45)      @ 0ns  pout_agent_h.monitor_h         [MNTR       ] Monitoring of 'dutb_txn_base' forbidden!
+
+            "file_regex": "(?:UVM_INFO|UVM_INFO_H|UVM_WARNING|UVM_ERROR|UVM_FATAL|xrun|xmvlog|xmelab|halcheck|halstruct|halsynth|xmsim)(?:: \\*[FEWN],[A-Z0-9]+)*\\s+\\(*(?<file>.*)[\\(,](?<line>\\d+)\\|*(?<column>\\d*)\\):*\\s+(?<message>.*)",
             "selector": "source.systemverilog",
             "working_dir": "c:/_d/design/csi_tb/run",
             "syntax": "Packages/User/Colored_build_output.sublime-syntax",
