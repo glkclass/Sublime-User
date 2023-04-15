@@ -8,4 +8,9 @@
 	"show_errors_inline": true,
 
 
+	"added_words":
+	[
+		"rst"
+	],
+	"font_size": 11,
 }
