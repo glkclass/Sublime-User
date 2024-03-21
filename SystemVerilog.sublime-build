@@ -3,14 +3,8 @@
     "selector": "source.systemverilog",
     "working_dir": "$file_path",
     "syntax": "Packages/User/Colored_build_output.sublime-syntax",
-    "shell_cmd": "bash --login  -c 'xrun -compile $file_name ; rm xrun.log xrun.history ; rm -rf xcelium.d'",
+    "shell_cmd": "echo Define build system, file regex, colored build output",
     "env":{
-        "DESIGN_PATH": "..",
-        "UTIL_PATH": "/home/anton/design/ESCORT65/digital/design/tb/util",
-        "CSI_PATH": "/home/anton/design/csi",
-        "SVE_PATH": "$CSI_PATH/src/sve",
-        "RTL_PATH": "$CSI_PATH/rtl"
-
     },
 
     "variants":
@@ -21,6 +15,7 @@
                 "working_dir": "$file_path",
                 "shell_cmd": "vlib work & vlog $file"
             },
+
             // {
             //     "name": "CSI: Simulate on nesx",
             //     "file_regex": "(?:xrun|xmvlog|xmelab|xmsim): \\*[FEWN],[A-Z0-9]+ \\((.*),(\\d+)\\|*(\\d*)\\): (.*)",
