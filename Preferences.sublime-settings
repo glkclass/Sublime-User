@@ -3,14 +3,26 @@
 	[
 		"Vintage",
 	],
-	"save_on_focus_lost": true,
-	"file_exclude_patterns": [],
-	"show_errors_inline": true,
 
+	"font_size": 12,
+	"index_files": true,
+	"save_on_focus_lost": true,
+	"theme": "auto",
+	"color_scheme": "Mariana.sublime-color-scheme",
+	"sublime_merge_path": "/snap/bin/sublime-merge",
 
 	"added_words":
 	[
-		"rst"
+		"uvc",
+		"sof",
+		"synthesizable",
+		"async",
+		"Cmd",
+		"0x",
+		"Verilog",
 	],
-	"font_size": 11,
+	"ignored_words":
+	[
+		"cmd"
+	],
 }

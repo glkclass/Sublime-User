@@ -70,13 +70,20 @@
             "font_style": "bold"
         },
 
+        // Error
         {
             "name": "Error detail",
             "scope": "message.error.detail",
             "font_style": "bold",
-            "foreground": "var(red2)",
         },
 
+        {
+            "name": "Error location",
+            "scope": "message.error.location",
+            "font_style": "italic",
+        },
+
+        // Warning
         {
             "name": "Warning",
             "scope": "message.warning",
@@ -87,9 +94,15 @@
             "name": "Warning detail",
             "scope": "message.warning.detail",
             "font_style": "bold",
-            "foreground": "var(orange2)",
         },
 
+        {
+            "name": "Warning location",
+            "scope": "message.warning.location",
+            "font_style": "italic",
+        },
+
+        // Note
         {
             "name": "Note",
             "scope": "message.note",
@@ -100,7 +113,6 @@
             "name": "Note detail",
             "scope": "message.note.detail",
             "font_style": "bold",
-            "foreground": "var(green)",
         },
 
         {
