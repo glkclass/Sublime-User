@@ -1,5 +1,8 @@
 {
+	
 	"delete_old_backups": 30, // days to delete
+	"backup_dir": "~/sublime_backups",
+
 	// ignore files/folders which match regexes
 	"ignore_regexes": [
 		// VCS folders

@@ -1,0 +1,135 @@
+%YAML 1.2
+---
+name: Vivado SV build output
+version: 1
+
+scope: source.build_output
+
+contexts:
+  # The prototype context is prepended to all contexts but those setting
+  # meta_include_prototype: false.
+  # prototype:
+
+  main:
+
+  # Sublime build output
+    - match: "^(Build|Elaborate|Simulate|Cleanup) (.*)"
+      captures:
+        1: build_output.bold
+        2: build_output.bold
+
+    - match: "^(.. Finished)"
+      captures:
+        1: build_output.bold
+
+    - match: "^\\[(shell_cmd|dir|path|Finished).*\\]"
+      captures:
+        1: build_output.bold
+
+  # Xilinx Vivado output
+
+    # Base RE from Build system
+    # "file_regex": "(?:UVM_)*(?:ERROR|WARNING|INFO).*[\\[|\"| ](\/[^:\\(\"]+)[^0-9]*([\\d]*).*",
+
+    - match: "(ERROR:) (\\[.*\\]) (.*) (\\[.*\\])"
+      scope: message.error
+      captures:
+        1: message.error.bold
+        4: message.error.underline
+
+    - match: "(ERROR:) (\\[.*\\]) (.*)"
+      scope: message.error
+      captures:
+        1: message.error.bold
+
+    - match: "^(UVM_ERROR) (\\[[A-Z/]*\\]) @ +(\\d+\\.\\d+ns) (.*) (/.*)$"
+      scope: message.error
+      captures:
+        1: message.error.bold
+        3: message.error.bold
+        5: message.error.underline
+
+    - match: "(UVM_FATAL|UVM_ERROR)(.*)"
+      scope: message.error
+      captures:
+        1: message.error.bold
+
+
+
+
+    - match: "(WARNING:) (\\[.*\\]) (File : /.*, Line : \\d+,) (.*)"
+      scope: message.warning
+      captures:
+        1: message.warning.bold
+        3: message.warning.underline
+
+    - match: "(WARNING:) (\\[.*\\]) (\"/.*\" Line \\d+.) (.*)"
+      scope: message.warning
+      captures:
+        1: message.warning.bold
+        3: message.warning.underline
+
+    - match: "(WARNING:) (\\[.*\\]) (.*)"
+      scope: message.warning
+      captures:
+        1: message.warning.bold
+
+    - match: "^(UVM_WARNING) (\\[.*\\]) @ +(\\d+\\.\\d+ns) (.*) (/.*)$"
+      scope: message.warning
+      captures:
+        # 1: message.warning
+        # 2: message.warning.bold
+        # 4: message.warning.bold
+        # 5: message.warning.underline
+
+        1: message.warning.bold
+        3: message.warning.bold
+        5: message.warning.underline
+
+
+    - match: "(UVM_WARNING) (\\[.*\\]) (.*)"
+      scope: message.warning
+      captures:
+        1: message.warning.bold
+
+    - match: "(UVM_WARNING) (.*)"
+      scope: message.warning
+      captures:
+        1: message.warning.bold
+
+
+
+
+    - match: "(INFO:) (\\[.*\\]) .* (\"/.*\") .*"
+      scope: message.note
+      captures:
+        1: message.note.bold
+        3: message.note.underline
+
+    - match: "(INFO:) (\\[.*\\]) .*"
+      scope: message.note
+      captures:
+        1: message.note.bold
+
+    - match: "(\\[INFO\\]).*"
+      scope: message.note
+      captures:
+        1: message.note.bold
+
+
+    - match: "^(UVM_INFO) (\\[.*\\]) @ +(\\d+\\.\\d+ns) (.*) (/.*)$"
+      scope: message.note
+      captures:
+        1: message.note.bold
+        3: message.note.bold
+        5: message.note.underline
+
+    - match: "(UVM_INFO) (\\[.*\\]) (.*)"
+      scope: message.note
+      captures:
+        1: message.note.bold
+
+    - match: "(UVM_INFO) (.*)"
+      scope: message.note
+      captures:
+        1: message.note.bold

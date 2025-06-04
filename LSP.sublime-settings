@@ -1,0 +1,14 @@
+// Settings in here override those in "LSP/LSP.sublime-settings"
+{
+	"clients": {
+        "verible-verilog-ls": {
+            "enabled": true,
+            "command": ["verible-verilog-ls"],
+            "selector": "source.systemverilog, source.verilog",
+            "env": { "PATH": "${PATH}:~/tools/verible/bin" }, // Prepend to existing PATH 
+            "args": [
+                "--rules=-line-length"
+            ]
+        }
+    }
+}

@@ -4,12 +4,13 @@
 		"Vintage",
 	],
 
-	"font_size": 12,
+	"font_size": 11,
 	"index_files": true,
 	"save_on_focus_lost": true,
 	"theme": "auto",
 	"color_scheme": "Mariana.sublime-color-scheme",
 	"sublime_merge_path": "/snap/bin/sublime-merge",
+	"trim_trailing_white_space_on_save": "all",
 
 	"added_words":
 	[
@@ -20,6 +21,17 @@
 		"Cmd",
 		"0x",
 		"Verilog",
+		"uart",
+		"cdc",
+		"dev",
+		"iic",
+		"sudo",
+		"chmod",
+		"crc",
+		"txn",
+		"tmp",
+		"Mbyte",
+		"init",
 	],
 	"ignored_words":
 	[

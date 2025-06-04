@@ -1,8 +1,8 @@
 {
     "file_regex": "",
     "selector": "source.c",
-    "working_dir": "/home/anton.voloshchuk/design/riscv-firmware-oko/i2c/Debug",
-    "syntax": "Packages/User/Colored_build_output.sublime-syntax",
+    "working_dir": "$file_path/../Release",
+    "syntax": "Packages/User/Build output.sublime-syntax",
     "shell_cmd": "echo Define build system, file regex, colored build output",
     "env":{},
 

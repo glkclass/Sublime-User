@@ -1,0 +1,84 @@
+// SublimeLinter Settings - User
+{
+	// "debug": true,
+	
+	"no_column_highlights_line": true,
+
+
+    "paths": {
+        "linux": ["/usr/bin"],
+        "osx": [],
+        "windows": []
+    },
+    
+    "linters":
+    {
+        
+
+
+        "verilator": {
+             "disable": true
+        },
+
+
+        "verilator_dis": {
+            "lint_mode": "load_save",
+            "styles" : [
+                {
+                    "types": ["warning"],
+                    "mark_style": "squiggly_underline",
+                    "icon": "Packages/SublimeLinter/gutter-themes/Default/cog.png"
+                },
+                {
+                    "types": ["error"],
+                    "mark_style": "fill",
+                    "icon": "Packages/SublimeLinter/gutter-themes/Default/cog.png"
+                }
+            ],
+            "args": [
+                "--error-limit",
+                "500",
+                "--default-language",
+                "1800-2017",
+                "-Wall",
+                "-Wno-WIDTHTRUNC",
+                "-Wno-WIDTHEXPAND",
+                "-Wno-INITIALDLY",
+                "-Wno-UNDRIVEN",
+                "-Wno-UNOPTFLAT",
+                "-Wno-UNUSEDPARAM",
+                "-Wno-SIDEEFFECT",
+                "-Wno-PINCONNECTEMPTY",
+                "-Wno-BLKSEQ",
+            ],
+
+            "verilator_version"  : 5,
+            "use_multiple_source": false,
+            "search_project_path": false,
+
+            // to lint based on multiple files (searching external sources - the same directory or project path)
+            //   "use_multiple_source": true,
+            //   "search_project_path": true,
+            //  example) example.sublime-project
+            //       "sources": [ "D:\\project\\srcs", "D:\\project\\working" ]
+
+            // windows subsystem for linux (wsl verilator_bin)
+            "use_wsl": false,
+
+            // additional option to filter file type
+            "extension": [
+                ".v", ".sv"
+            ],
+        }
+
+
+
+    }
+
+
+
+
+
+}
+
+

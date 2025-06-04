@@ -1,0 +1,407 @@
+{
+    
+    "index_exclude_patterns": ["~/design/git_forks/embeddedsw"],
+
+    "build_systems": 
+    [
+        {
+            "name": "Project: Vivado SV Build",
+
+            
+            // "file_regex": "(?:UVM_)*(?:ERROR|WARNING|INFO|FATAL).*[\\[|\"| ](\/[^:\\(\"]+)[^0-9]*([\\d]*).*", // RE for Xilinx Vivado build output
+            "file_regex": "(?:UVM_)*(?:ERROR|WARNING|INFO|FATAL).*[\\[|\"| ](/[^:\\(\",]+)[^0-9]*([\\d]*).*", // RE for Xilinx Vivado build output
+
+            "selector": "source.systemverilog",
+            "shell_cmd": "echo 'Define build system, file regex, colored build output'",
+            "working_dir": "/home/anton.voloshchuk/design/tmp/runs",
+            "syntax": "Packages/User/Vivado SV build output.sublime-syntax",
+
+            "env": 
+                {   
+                    "VIVADO_PATH": "/tools/Xilinx/2025.1/Vivado",
+                    "DUTB_PATH": "/home/anton.voloshchuk/design/dutb",
+                    "DESIGN": "/home/anton.voloshchuk/design", 
+                    "FPGA_BITSTREAM_PATH": "/home/anton.voloshchuk/design/fpga_firmware/fpga-bitstream",
+                    "CORE_DDR3_CONTROLLER_PROJECT_PATH": "/home/anton.voloshchuk/design/arty_a7_projects/core_ddr3_controller",
+                    "VIVADO_SETTINGS": "/tools/Xilinx/Vivado/2023.2/settings64.sh",
+                },
+
+            "variants":
+                [
+                    
+                    {
+                        "name": "compile",
+                        "shell_cmd": "echo Vivado toolchain: compile $file in `pwd` ; source /tools/Xilinx/2025.1/Vivado/settings64.sh ; xvlog -sv -L UVM $file  ",
+                    },
+                    {
+                        "name": "build_dutb",
+                        "shell_cmd": "source /home/anton.voloshchuk/design/dutb/util/scrpt/vivado_build_dutb.sh",
+                    },
+                    {
+                        "name": "clean",
+                        "shell_cmd": "echo Vivado toolchain: clean in `pwd`; rm -rf *",
+                    },
+
+                    
+                    // core_ddr3_controller
+                    {
+                        "name": "core_ddr3_controller_clean_proj",
+                        "shell_cmd": "source /home/anton.voloshchuk/design/arty_a7_projects/core_ddr3_controller/tb/util/scrpt//vivado_build_project.sh clean",
+                    },
+                    {
+                        "name": "core_ddr3_controller_synth_proj",
+                        "shell_cmd": "source /home/anton.voloshchuk/design/arty_a7_projects/core_ddr3_controller/tb/util/scrpt//vivado_build_project.sh synth",
+                    },
+                    {
+                        "name": "core_ddr3_controller_impl_proj",
+                        "shell_cmd": "source /home/anton.voloshchuk/design/arty_a7_projects/core_ddr3_controller/tb/util/scrpt//vivado_build_project.sh impl",
+                    },
+                    {
+                        "name": "core_ddr3_controller_bitstr_proj",
+                        "shell_cmd": "source /home/anton.voloshchuk/design/arty_a7_projects/core_ddr3_controller/tb/util/scrpt//vivado_build_project.sh bitstream",
+                    },
+
+                    {
+                        "name": "core_ddr3_controller_build_rtl",
+                        "shell_cmd": "source /home/anton.voloshchuk/design/arty_a7_projects/core_ddr3_controller/tb/util/scrpt//vivado_build_rtl.sh",
+                    },
+                    {
+                        "name": "core_ddr3_controller_elab_rtl",
+                        "shell_cmd": "source /home/anton.voloshchuk/design/arty_a7_projects/core_ddr3_controller/tb/util/scrpt//vivado_build_rtl.sh elab",
+                    },
+
+                    
+                    // fpga_bitsrteam
+                    {
+                        "name": "fpga_bitsrteam_build_rtl",
+                        "shell_cmd": "source /home/anton.voloshchuk/design/fpga_firmware/fpga-bitstream/tb/dut_tb/util/scrpt/vivado_build_rtl.sh",
+                    },
+                    {
+                        "name": "fpga_bitsrteam_build_dut_tb",
+                        "shell_cmd": "source /home/anton.voloshchuk/design/fpga_firmware/fpga-bitstream/tb/dut_tb/util/scrpt/vivado_build_dut_tb.sh",
+                    },
+                    {
+                        "name": "fpga_bitsrteam_elab_dut_tb",
+                        "shell_cmd": "source /home/anton.voloshchuk/design/fpga_firmware/fpga-bitstream/tb/dut_tb/util/scrpt/vivado_build_dut_tb.sh elab",
+                    },
+                    {
+                        "name": "fpga_bitsrteam_sim_dut_tb",
+                        "shell_cmd": "source /home/anton.voloshchuk/design/fpga_firmware/fpga-bitstream/tb/dut_tb/util/scrpt/vivado_build_dut_tb.sh sim",
+                    }
+                    
+            ],
+        },
+
+        {
+            "name": "Project: C Cross Build",
+            "file_regex": "^(.*):([0-9]+):([0-9]+): (.*)$",
+            "selector": "source.c",
+            "working_dir": "$file_path/../Release",
+            "syntax": "Packages/User/Build output.sublime-syntax",
+            "shell_cmd": "echo Define build system, file regex, colored build output",
+            "env":{},
+
+            "variants":
+                [
+                    // Vitis
+                    {
+                        "name": "compile",
+                        "shell_cmd": "echo Vitis toolchain: compile $file; source /tools/Xilinx/Vitis/2023.2/settings64.sh ; mb-gcc -Wall -Wextra -pedantic -O2 -c -I$file_path/../../top/export/top/sw/top/standalone_domain/bspinclude/include $file",
+                    },
+                    {
+                        "name": "build",
+                        "shell_cmd": "echo Vitis toolchain: make ; source /tools/Xilinx/Vitis/2023.2/settings64.sh ; make all",
+                    },
+                    {
+                        "name": "clean",
+                        "shell_cmd": "echo Vitis toolchain: make ; source /tools/Xilinx/Vitis/2023.2/settings64.sh ; make clean",
+                    }
+                    // 
+            ],
+        },
+
+        {
+			"file_regex": "^\\s*File \"(...*?)\", line ([0-9]*)",
+			"name": "Anaconda Python Builder",
+			"selector": "source.python",
+			"shell_cmd": "\"python3\" -m py_compile \"$file\"",
+            "env": { 
+                    "AVV_DEBUG": "1",
+                    "DESIGN_PATH": "/home/anton.voloshchuk/design", 
+                    "PYTHONPATH": "/home/anton.voloshchuk/design/scrpt:/home/anton.voloshchuk/design/misc/oct640m-17-2nuc/capture",
+                    },
+            /*"file_regex": "^\\s*File \"(...*?)\", line ([0-9]*)",*/
+            "syntax": "Packages/User/Build output.sublime-syntax",
+            "variants":
+                [
+                    {
+                        "name": "run",
+                        "shell_cmd": "\"python3\" -u \"$file\"",
+                    },
+            ],
+		},
+    ],
+
+
+
+    "folders":
+    [
+        // {
+        //     "name": "vico",
+        //     "path": "~/design/vico",
+        // },
+
+
+
+        // {
+        //     "name": "home",
+        //     "path": "/home/anton.voloshchuk",
+        // },
+
+
+
+
+        // {
+        //     "name": "Sublime-User",
+        //     "path": "~/design/Sublime-User",
+        // },
+
+        // {
+        //     "name": "rtl_example",
+        //     "path": "rtl_example",
+        // },
+
+        // {
+        //     "name": "MicroBlaze-DDR3-tutorial",
+        //     "path": "/home/anton.voloshchuk/design/MicroBlaze-DDR3-tutorial/",
+        // },
+
+        // {
+        //     "name": "Sublime User Packages",
+        //     "path": "/home/anton.voloshchuk/.config/sublime-text/Packages/User",
+        //     /*"folder_exclude_patterns": []*/
+        // },
+
+        
+        // {
+        //     "name": "ddr3-controller",
+        //     "path": "/home/anton.voloshchuk/design/ddr3-controller/",
+        // },
+
+
+        // {
+        //     "name": "sublime_backups",
+        //     "path": "~/sublime_backups",
+        // },
+
+        {
+            "name": "core_ddr3_controller",
+            "path": "/home/anton.voloshchuk/design/arty_a7_projects/core_ddr3_controller/",
+        },
+
+        {
+            "name": "core_ram_tester",
+            "path": "/home/anton.voloshchuk/design/arty_a7_projects/core_ram_tester/",
+        },
+
+        {
+            "name": "artya7_projects_n_all",
+            "folder_exclude_patterns": ["core_ddr3_controller", "core_ram_tester"],
+            "path": "/home/anton.voloshchuk/design/arty_a7_projects",
+        },
+
+
+        {
+            "name": "dutb",
+            "path": "dutb",
+        },
+
+        {
+            "name": "firmware_fpga-bitstream",
+            "path": "fpga_firmware/fpga-bitstream",
+        },
+
+
+        {
+            "name": "firmware_riscv-firmware-oko",
+            "path": "fpga_firmware/riscv-firmware-oko",
+        },
+
+        {
+            "name": "--misc--",
+            "path": "misc",
+        },
+
+
+        {
+            "name": "--tmp--",
+            "path": "tmp",
+        },
+
+
+        {
+            "name": "calibration_am_serial_scripts",
+            "path": "fpga_firmware/am_serial_scripts",
+        },
+
+        {
+            "name": "scrpt",
+            "path": "scrpt",
+        },
+
+
+        {
+            "name": "uvm",
+            "path": "/tools/Xilinx/Vivado/2023.2/data/system_verilog/uvm_1.2",
+        },
+
+        // {
+        //     "name": "csi_tb",
+        //     "path": "csi_tb",
+        // },
+
+        // {
+        //     "name": "uvm",
+        //     /*"folder_exclude_patterns": [],*/
+        //     "path": "/tools/Xilinx/Vivado/2023.2/data/system_verilog/uvm_1.2/",
+        // },
+
+
+        // {
+        //     "name": "ssh",
+        //     "path": "~/.ssh",
+        // },
+
+
+
+        // {
+        //     "name": "test_project",
+        //     "path": "calibration/test_project",
+        // },
+
+        // {
+        //     "name": "fpga-bitstream_main",
+        //     /*"folder_exclude_patterns": [],*/
+        //     "path": "fpga_firmware/main_fpga-bitstream",
+        // },
+
+
+        // {
+        //     "name": "riscv-firmware-oko",
+        //     "path": "riscv-firmware-oko",
+        // },
+
+
+
+  
+        // {
+        //     "name": "rtl_example",
+        //     "path": "~/design/rtl_example",
+        // },
+
+
+
+
+
+        // {
+        //     "name": "gitlab_server",
+        //     "path": "~/design/gitlab server",
+        // },
+
+        // {
+        //     "name": "oct640_7a_uvc",
+        //     "path": "~/design/oct640_7a_uvc",
+        // },
+
+
+        // {
+        //     "name": "core_spiflash",
+        //     "path": "~/design/git_forks/core_spiflash",
+        // },
+
+        // {
+        //     "name": "core_usb_bridge",
+        //     "path": "~/design/git_forks/cores/usb_bridge",
+        // },
+
+        // {
+        //     "name": "FPGA-USB-Device",
+        //     "path": "~/design/git_forks/FPGA-USB-Device",
+        // },
+
+        // {
+        //     "name": "TinyFPGA-Bootloader",
+        //     "path": "~/design/git_forks/TinyFPGA-Bootloader",
+        // },
+
+        // {
+        //     "name": "pomodoro@gregfreeman.org",
+        //     "path": "~/design/cinnamon-spices-applets/pomodoro@gregfreeman.org/files/pomodoro@gregfreeman.org",
+        // },
+
+
+
+        // {
+        //     "name": "riscv-firmware",
+        //     /*"folder_exclude_patterns": [],*/
+        //     "path": "riscv-firmware",
+        // },
+
+        // {
+        //     "name": "oct640_7a_platform",
+        //     /*"folder_exclude_patterns": [],*/
+        //     "path": "oct640_7a_platform",
+        // },
+
+
+        // {
+        //     "name": "oct640_7a_tiny_bootloader",
+        //     "folder_exclude_patterns": [],
+        //     "path": "~/design/oct640_7a_tiny_bootloader",
+        // },
+
+
+        // {
+        //     "name": "foo_uvm_viv",
+        //     "folder_exclude_patterns": [],
+        //     "path": "~/design/foo_uvm_viv",
+        // },
+
+        // {
+        //     "name": "scrpt",
+        //     "folder_exclude_patterns": [                "__pycache__",
+        //     ],
+        //     "path": "scrpt",
+        // },
+
+        // {
+        //     "name": "csi_tb",
+        //     "folder_exclude_patterns": [],
+        //     "path": "~/design/csi_tb",
+        // },
+
+
+
+        // {
+        //     "name": "root",
+        //     "path": "~",
+        // },
+
+        // {
+        //     "name": "calibration_fpga-a7-usb",
+        //     "path": "fpga_calibration/fpga-a7-usb",
+        // },
+
+        // {
+        //     "name": "calibration_microcode-a7-usb",
+        //     "path": "fpga_calibration/microcode-a7-usb",
+        // },
+
+        // {
+        //     "name": "embeddedsw",
+        //     "path": "~/design/git_forks/embeddedsw",
+        // },
+
+
+    ],
+}

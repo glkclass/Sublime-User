@@ -54,14 +54,14 @@
         {
             "name": "Build output",
             "scope": "build_output",
-            "foreground": "var(white)",
+            "foreground": "var(blue)",
         },
 
         {
-            "name": "Build output bolded",
+            "name": "Build output bold",
             "scope": "build_output.bold",
             "font_style": "bold",
-            "foreground": "var(blue4)",
+            "foreground": "var(blue)",
         },
 
         {
@@ -72,15 +72,21 @@
 
         // Error
         {
-            "name": "Error detail",
-            "scope": "message.error.detail",
+            "name": "Error bold",
+            "scope": "message.error.bold",
             "font_style": "bold",
         },
 
         {
-            "name": "Error location",
-            "scope": "message.error.location",
+            "name": "Error italic",
+            "scope": "message.error.italic",
             "font_style": "italic",
+        },
+
+        {
+            "name": "Error underline",
+            "scope": "message.error.underline",
+            "font_style": "underline",
         },
 
         // Warning
@@ -91,15 +97,21 @@
         },
 
         {
-            "name": "Warning detail",
-            "scope": "message.warning.detail",
+            "name": "Warning bold",
+            "scope": "message.warning.bold",
             "font_style": "bold",
         },
 
         {
-            "name": "Warning location",
-            "scope": "message.warning.location",
+            "name": "Warning italic",
+            "scope": "message.warning.italic",
             "font_style": "italic",
+        },
+
+        {
+            "name": "Warning underline",
+            "scope": "message.warning.underline",
+            "font_style": "underline",
         },
 
         // Note
@@ -110,15 +122,21 @@
         },
 
         {
-            "name": "Note detail",
-            "scope": "message.note.detail",
+            "name": "Note bold",
+            "scope": "message.note.bold",
             "font_style": "bold",
         },
 
         {
-            "name": "Note location",
-            "scope": "message.note.location",
+            "name": "Note italic",
+            "scope": "message.note.italic",
             "font_style": "italic"
+        },
+
+        {
+            "name": "Note underline",
+            "scope": "message.note.underline",
+            "font_style": "underline"
         },
 
         {

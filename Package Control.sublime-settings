@@ -7,8 +7,15 @@
 	[
 		"Anaconda",
 		"AutoBackups",
+		"HexViewer",
+		"LSP",
+		"LSP-clangd",
+		"MarkdownPreview",
 		"Package Control",
 		"SideBarEnhancements",
+		"Smart VHDL",
+		"SublimeLinter",
+		"SublimeLinter-contrib-verilator",
 		"SystemVerilog",
 	],
 }
