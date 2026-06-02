@@ -4,11 +4,11 @@
 		"Vintage",
 	],
 
-	"font_size": 11,
+	"font_size": 10,
 	"index_files": true,
 	"save_on_focus_lost": true,
-	"theme": "auto",
-	"color_scheme": "Mariana.sublime-color-scheme",
+	"theme": "Default.sublime-theme",
+	"color_scheme": "Rebecca.sublime-color-scheme",
 	"sublime_merge_path": "/snap/bin/sublime-merge",
 	"trim_trailing_white_space_on_save": "all",
 
@@ -36,5 +36,10 @@
 	"ignored_words":
 	[
 		"cmd"
+	],
+	"dark_theme": "Default.sublime-theme",
+	"light_theme": "Adaptive.sublime-theme",
+	"in_process_packages":
+	[
 	],
 }

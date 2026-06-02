@@ -1,7 +1,0 @@
-{
-    "shell_cmd": "echo BashScript: run  in `pwd` ; source \"$file\"",
-    "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
-    "syntax": "Packages/User/Colored_build_output.sublime-syntax",
-    "selector": "source.shell.bash"
-}
-

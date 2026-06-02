@@ -3,7 +3,10 @@
 name: Build output
 version: 1
 
-scope: source.build_output
+scope: source.log_output
+
+file_extensions:
+  - log
 
 contexts:
   # The prototype context is prepended to all contexts but those setting
@@ -12,31 +15,78 @@ contexts:
 
   main:
 
-  # Sublime build output
-    - match: "^((?:Vitis|Vivado) toolchain): (compile|build|make|elaborate|simulate|elaborate and simulate) in (.*)"
+  # BuildSys make output
+    - match: "(\\d+:\\d+:\\d+) (INFO)\\s+\\| Make (\\S+) \\| Tools: (\\S+)"
       captures:
-        1: build_output.bold
-        2: build_output.bold
-        4: build_output.bold
+        1: message.note
+        2: message.note.bold
+        3: log_output.rule
+        4: log_output.detail
 
+
+    - match: "(\\d+:\\d+:\\d+) (INFO)\\s+\\| Make (\\S+)"
+      captures:
+        1: message.note
+        2: message.note.bold
+        3: log_output.rule
+
+
+    - match: "^(INFO)\\s+\\| See (\\S+, line 1)\\s(.*)"
+      captures:
+        1: message.note.bold
+        2: log_output.file
+
+    - match: "^(INFO)\\s+\\| (.*)"
+      captures:
+        1: message.note.bold
+        2: message.note
+
+    - match: "^(ERROR)\\s+\\| (.*)"
+      captures:
+        1: message.error.bold
+        2: message.error
+
+  #Python log output
+    - match: "(\\d+:\\d+:\\d+) (INFO)\\s+(\\| .* \\|) (.*)"
+      captures:
+        1: message.note
+        2: message.note.bold
+        3: message.note
+        4: message.note.underline
+
+    - match: "(\\d+:\\d+:\\d+) (ERROR)\\s+(\\| .* \\|) (.*)"
+      captures:
+        1: message.error
+        2: message.error.bold
+        3: message.error
+        4: message.error.underline
+
+    - match: "(\\d+:\\d+:\\d+) (WARNING)\\s+(\\| .* \\|) (.*)"
+      captures:
+        1: message.warning
+        2: message.warning.bold
+        3: message.warning
+        4: message.warning.underline
+
+  # Sublime build output
     - match: "^\\[(shell_cmd|dir|path|Finished).*\\]"
       captures:
-        1: build_output.bold
+        1: log_output.bold
 
   # make output
     - match: "^(Building) (file|target): (.*)"
       captures:
-        1: build_output.bold
-        3: build_output.bold
+        1: log_output.bold
+        3: log_output.bold
 
     - match: "^(Invoking)(.*)"
       captures:
-        1: build_output.bold
+        1: log_output.bold
 
     - match: "^(Finished)(.*):(.*)"
       captures:
-        1: build_output.bold
-        3: build_output.bold
+        1: log_output.bold
+        3: log_output.bold
 
   # linker output
     - match: "^.*(error: ld).*$"
@@ -74,10 +124,10 @@ contexts:
   # Cadence Xcelium output
     - match: "file:\\s(.*)"
       captures:
-        1: build_output.bold
+        1: log_output.bold
 
     - match: "module\\s\\w+\\s\\(.*"
-      scope: build_output.bold
+      scope: log_output.bold
 
     - match: "(?:xrun|xmvlog|xmvlog_cg|xmelab|halcheck|halstruct|halsynth|xmsim): \\*[E],[A-Z0-9]+ \\((.*),(\\d+)\\|*(\\d*)\\): (.*)"
       scope: message.error
@@ -111,10 +161,10 @@ contexts:
   # Cadence Xcelium UVM output
     - match: "file:\\s(.*)"
       captures:
-        1: build_output.bold
+        1: log_output.bold
 
     - match: "module\\s\\w+\\s\\(.*"
-      scope: build_output.bold
+      scope: log_output.bold
 
     - match: "(?:UVM_ERROR)\\s+(.*)\\((\\d+)\\)\\s+@ (\\d+\\.\\d+ns) (.*)"
       scope: message.error
@@ -158,56 +208,136 @@ contexts:
     - match: "(UVM_FATAL).+"
       scope: message.error.fatal
 
-  # Xilinx xvlog (Vivado) output
-    - match: "(ERROR): \\[([^\\]]+)\\] ([^\\[]+) \\[(.+):(\\d+)\\]"
+    # Xilinx Vivado binary tools output
+    - match: "(ERROR:) File: (/.*) Line: \\d+.*"
       scope: message.error
       captures:
-        1: message.error.detail
-        2: message.error.detail
-        4: message.error.location
-        5: message.error.location
+        1: message.error.bold
+        2: message.error.underline
 
-    - match: "(ERROR): \\[([^\\]]+)\\].*"
+    # Xilinx Vivado binary tools output
+    - match: "(ERROR:) (\\[.*\\]) (.*) (\\[.*\\])"
       scope: message.error
       captures:
-        1: message.error.detail
-        2: message.error.detail
+        1: message.error.bold
+        4: message.error.underline
 
-    - match: "(ERROR|Error): .*"
+    # Xilinx Vivado binary tools output
+    - match: "(ERROR:) (\\[.*\\]) (.*)"
       scope: message.error
       captures:
-        1: message.error.detail
+        1: message.error.bold
 
-    
-    - match: "(WARNING): \\[([^\\]]+)\\] ([^\\[]+) \\[(.+):(\\d+)\\]"
+    # UVM framework output
+    - match: "^(UVM_ERROR) (\\[[A-Z/]*\\]) @ +(\\d+\\.\\d+ns) (.*) (/.*)$"
+      scope: message.error
+      captures:
+        1: message.error.bold
+        3: message.error.bold
+        5: message.error.underline
+
+    # UVM framework output
+    - match: "(UVM_FATAL|UVM_ERROR)(.*)"
+      scope: message.error
+      captures:
+        1: message.error.bold
+
+
+
+
+
+    # Xilinx Vivado binary tools output
+    - match: "(WARNING:) (\\[.*\\]) (File : /.*, Line : \\d+,) (.*)"
       scope: message.warning
       captures:
-        1: message.warning.detail
-        2: message.warning.detail
-        4: message.warning.location
-        5: message.warning.location
+        1: message.warning.bold
+        3: message.warning.underline
 
-    - match: "(\\[WARNING\\]) (.*)"
+    # Xilinx Vivado binary tools output
+    - match: "(WARNING:) (\\[.*\\]) (\"/.*\" Line \\d+.) (.*)"
       scope: message.warning
       captures:
-        1: message.warning.detail
-        
-    - match: "(\\[(?:FATAL|ERROR)\\]) (.*)"
-      scope: message.error
-      captures:
-        1: message.error.detail
+        1: message.warning.bold
+        3: message.warning.underline
 
-    - match: "(INFO): \\[([^\\]]+)\\] (.*)"
+    # Xilinx Vivado binary tools output
+    - match: "(WARNING:) (\\[.*\\]) (.*) (\\[/.*:\\d+\\])(.*)"
+      scope: message.warning
+      captures:
+        1: message.warning.bold
+        4: message.warning.underline
+
+
+    # Xilinx Vivado binary tools output
+    - match: "(WARNING:) (\\[.*\\]) (.*)"
+      scope: message.warning
+      captures:
+        1: message.warning.bold
+
+    # UVM framework output
+    - match: "^(UVM_WARNING) (\\[.*\\]) @ +(\\d+\\.\\d+ns) (.*) (/.*)$"
+      scope: message.warning
+      captures:
+        1: message.warning.bold
+        3: message.warning.bold
+        5: message.warning.underline
+
+    # UVM framework output
+    - match: "(UVM_WARNING) (\\[.*\\]) (.*)"
+      scope: message.warning
+      captures:
+        1: message.warning.bold
+
+    # UVM framework output
+    - match: "(UVM_WARNING) (.*)"
+      scope: message.warning
+      captures:
+        1: message.warning.bold
+
+
+
+
+
+
+    # Xilinx Vivado binary tools output
+    - match: "(INFO:) (\\[.*\\]) .* (\"/.*\") .*"
       scope: message.note
       captures:
-        1: message.note.detail
-        2: message.note.detail
- 
-    - match: "(\\[INFO\\]) (.*)"
+        1: message.note.bold
+        3: message.note.underline
+
+    # Xilinx Vivado binary tools output
+    - match: "(INFO:) (\\[.*\\]) .*"
       scope: message.note
       captures:
-        1: message.note.detail
-        
+        1: message.note.bold
+
+    # Xilinx Vivado binary tools output
+    - match: "(\\[INFO\\]).*"
+      scope: message.note
+      captures:
+        1: message.note.bold
+
+    # UVM framework output
+    - match: "^(UVM_INFO) (\\[.*\\]) @ +(\\d+\\.\\d+ns) (.*) (/.*)$"
+      scope: message.note
+      captures:
+        1: message.note.bold
+        3: message.note.bold
+        5: message.note.underline
+
+    # UVM framework output
+    - match: "(UVM_INFO) (\\[.*\\]) (.*)"
+      scope: message.note
+      captures:
+        1: message.note.bold
+
+    # UVM framework output
+    - match: "(UVM_INFO) (.*)"
+      scope: message.note
+      captures:
+        1: message.note.bold
+
   #Python output
     - match: "File\\s\"(.*)\",\\sline\\s\\d+,\\sin\\s(.*)"
       captures:
@@ -235,7 +365,7 @@ contexts:
         1: message.note.detail
 
     - match: ".*\\sDEBUG\\s.*"
-      scope: build_output
+      scope: log_output
 
     - match: ".*\\sINFO\\s.*"
       scope: message.note
@@ -250,37 +380,3 @@ contexts:
       scope: message.error
       captures:
         1: message.error.detail
-
-  #[LOG] output
-    - match: "errors:\\s0"
-      scope: build_output.bold
-
-    - match: "errors:\\s[1-9]\\d*"
-      scope: message.error
-
-    - match: "warnings:\\s0"
-      scope: build_output.bold
-
-    - match: "warnings:\\s[1-9]\\d*"
-      scope: message.warning
-
-    - match: "={12}(Result)*={12}=*"
-      scope: build_output.bold
-
-    - match: "\\sPASS(\\s|=\\d+)"
-      scope: message.note
-
-    - match: "\\sFAIL(\\s|=[1..9]\\d*)"
-      scope: message.error
-
-    - match: "\\[LOG\\]\\s+Success.*"
-      scope: message.note
-
-    - match: "\\[LOG\\]\\s+Fail.*"
-      scope: message.error
-
-    - match: "\\[LOG\\]\\s+Error.*"
-      scope: message.error
-
-    - match: "\\[LOG\\]\\s.*"
-      scope: build_output.bold

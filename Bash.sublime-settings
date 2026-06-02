@@ -1,6 +1,10 @@
 {
 	"extensions":
 	[
-		"opt"
-	]
+		"opt",
+		".env",
+		".user_env",
+		"env",
+		"user_env",
+	],
 }

@@ -3,12 +3,9 @@
 	"clients": {
         "verible-verilog-ls": {
             "enabled": true,
-            "command": ["verible-verilog-ls"],
+            "command": ["verible-verilog-ls", "--rules_config=/home/anton.voloshchuk/.config/sublime-text/Packages/User/rules.verible_lint"],
             "selector": "source.systemverilog, source.verilog",
             "env": { "PATH": "${PATH}:~/tools/verible/bin" }, // Prepend to existing PATH 
-            "args": [
-                "--rules=-line-length"
-            ]
         }
     }
 }

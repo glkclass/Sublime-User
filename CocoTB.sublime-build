@@ -2,7 +2,7 @@
     "file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
     "shell_cmd": "cd /home/anton/design/cocotb_rock ; make",
     "selector": "source.python",
-    "syntax": "Packages/User/Colored_build_output.sublime-syntax",
+    "syntax": "Packages/User/Log.sublime-syntax",
     "variants":
     [
         {

@@ -1,27 +1,13 @@
 // SublimeLinter Settings - User
 {
-	// "debug": true,
-	
-	"no_column_highlights_line": true,
+    "debug": true,
+    "no_column_highlights_line": true,
 
-
-    "paths": {
-        "linux": ["/usr/bin"],
-        "osx": [],
-        "windows": []
-    },
-    
     "linters":
     {
-        
-
-
         "verilator": {
-             "disable": true
-        },
-
-
-        "verilator_dis": {
+            "disable": false,
+            "working_dir": "$file_path",
             "lint_mode": "load_save",
             "styles" : [
                 {
@@ -31,13 +17,13 @@
                 },
                 {
                     "types": ["error"],
-                    "mark_style": "fill",
+                    "mark_style": "outline",
                     "icon": "Packages/SublimeLinter/gutter-themes/Default/cog.png"
                 }
             ],
             "args": [
                 "--error-limit",
-                "500",
+                "300",
                 "--default-language",
                 "1800-2017",
                 "-Wall",
@@ -50,11 +36,13 @@
                 "-Wno-SIDEEFFECT",
                 "-Wno-PINCONNECTEMPTY",
                 "-Wno-BLKSEQ",
+                "-y", "/tools/Xilinx/2025.1/data/verilog/src/unisims",
+                 // "-I", "/home/anton.voloshchuk/design/dutb/src",
             ],
 
             "verilator_version"  : 5,
-            "use_multiple_source": false,
-            "search_project_path": false,
+            "use_multiple_source": true,
+            "search_project_path": true,
 
             // to lint based on multiple files (searching external sources - the same directory or project path)
             //   "use_multiple_source": true,
@@ -67,18 +55,37 @@
 
             // additional option to filter file type
             "extension": [
-                ".v", ".sv"
+                ".v",
             ],
         }
-
-
-
     }
-
-
-
-
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

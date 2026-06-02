@@ -4,5 +4,6 @@
 		"xci",
 		"list",
 		"ld",
+		"verible_lint",
 	],
 }

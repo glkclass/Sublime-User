@@ -1,0 +1,212 @@
+{
+    "name": "CodeWarrior",
+    "author": "Blake Stephens",
+    "variables":
+    {
+        "black": "hsl(0, 0%, 7%)",
+        "blue": "hsl(205, 48%, 42%)",
+        "blue2": "hsl(195, 50%, 27%)",
+        "blue3": "hsl(240, 82%, 51%)",
+        "blue4": "hsl(240, 67%, 45%)",
+        "blue5": "hsl(198, 41%, 29%)",
+        "cyan": "hsl(179, 77%, 40%)",
+        "cyan2": "hsl(181, 100%, 29%)",
+        "cyan3": "hsl(189, 100%, 39%)",
+        "cyan4": "hsl(191, 100%, 56%)",
+        "cyan5": "hsl(178, 18%, 63%)",
+        "green": "hsl(120, 100%, 25%)",
+        "green2": "hsl(94, 55%, 52%)",
+        "green3": "hsl(122, 93%, 83%)",
+        "grey": "hsl(180, 4%, 63%)",
+        "grey2": "hsl(53, 8%, 21%)",
+        "purple": "hsl(263, 63%, 48%)",
+        "purple2": "hsl(263, 100%, 39%)",
+        "purple3": "hsl(263, 47%, 60%)",
+        "red": "hsl(0, 100%, 50%)",
+        "red2": "hsl(7, 82%, 51%)",
+        "red3": "hsl(8, 100%, 40%)",
+        "white": "hsl(0, 0%, 100%)",
+        "white2": "hsl(60, 36%, 96%)",
+        "white3": "hsl(60, 30%, 96%)",
+        "white4": "hsl(80, 100%, 90%)",
+        "yellow": "hsl(54, 70%, 68%)",
+        "yellow2": "hsl(51, 88%, 56%)",
+        "yellow3": "hsl(75, 100%, 37%)",
+        "yellow4": "hsl(80, 76%, 53%)",
+        "yellow5": "hsl(50, 11%, 41%)"
+    },
+    "globals":
+    {
+        "foreground": "var(black)",
+        "background": "var(grey)",
+        "caret": "var(white2)",
+        "invisibles": "var(grey2)",
+        "line_highlight": "color(var(blue2) alpha(0.031))",
+        "selection": "color(var(cyan) alpha(0.13))",
+        "selection_border": "var(cyan5)",
+        "active_guide": "var(red)",
+        "find_highlight_foreground": "var(white)",
+        "find_highlight": "var(green2)",
+        "brackets_options": "underline",
+        "brackets_foreground": "color(var(white3) alpha(0.65))",
+        "bracket_contents_options": "underline",
+        "bracket_contents_foreground": "color(var(white3) alpha(0.65))",
+        "tags_options": "stippled_underline"
+    },
+    "rules":
+    [
+        {
+            "name": "Comment",
+            "scope": "comment",
+            "foreground": "var(red3)",
+            "font_style": "italic"
+        },
+        {
+            "name": "String",
+            "scope": "string",
+            "foreground": "var(white)"
+        },
+        {
+            "name": "Single Quoted String",
+            "scope": "string.quoted.single",
+            "foreground": "var(white4)"
+        },
+        {
+            "name": "Number",
+            "scope": "constant.numeric",
+            "foreground": "var(cyan2)"
+        },
+        {
+            "name": "Built-in constant",
+            "scope": "constant.language",
+            "foreground": "var(purple)"
+        },
+        {
+            "name": "User-defined constant",
+            "scope": "constant.character, constant.other",
+            "foreground": "var(purple2)"
+        },
+        {
+            "name": "Variable",
+            "scope": "variable",
+            "foreground": "var(green)"
+        },
+        {
+            "name": "Keyword",
+            "scope": "keyword",
+            "foreground": "var(blue4)",
+            "font_style": "bold"
+        },
+        {
+            "name": "Storage",
+            "scope": "storage",
+            "foreground": "var(red2)"
+        },
+        {
+            "name": "Storage type",
+            "scope": "storage.type",
+            "foreground": "var(cyan4)",
+            "font_style": "italic"
+        },
+        {
+            "name": "Class name",
+            "scope": "entity.name.class",
+            "foreground": "var(purple3)",
+            "font_style": "underline"
+        },
+        {
+            "name": "Inherited class",
+            "scope": "entity.other.inherited-class",
+            "foreground": "var(purple3)",
+            "font_style": "italic underline"
+        },
+        {
+            "name": "Function name",
+            "scope": "entity.name.function",
+            "foreground": "var(yellow2)"
+        },
+        {
+            "name": "Function argument",
+            "scope": "variable.parameter",
+            "foreground": "var(purple3)",
+            "font_style": "italic"
+        },
+        {
+            "name": "Tag name",
+            "scope": "entity.name.tag",
+            "foreground": "var(blue3)",
+            "font_style": "bold"
+        },
+        {
+            "name": "Tag attribute",
+            "scope": "entity.other.attribute-name",
+            "foreground": "var(blue)"
+        },
+        {
+            "name": "Library function",
+            "scope": "support.function",
+            "foreground": "var(blue5)"
+        },
+        {
+            "name": "Library constant",
+            "scope": "support.constant",
+            "foreground": "var(purple3)"
+        },
+        {
+            "name": "Library class/type",
+            "scope": "support.type, support.class",
+            "foreground": "var(purple3)",
+            "font_style": "italic"
+        },
+        {
+            "name": "Library variable",
+            "scope": "support.other.variable",
+            "foreground": "var(green3)"
+        },
+        {
+            "name": "Invalid",
+            "scope": "invalid",
+            "foreground": "var(white2)",
+            "background": "var(cyan3)"
+        },
+        {
+            "name": "Invalid deprecated",
+            "scope": "invalid.deprecated",
+            "foreground": "var(white2)",
+            "background": "var(yellow3)"
+        },
+        {
+            "name": "JSON String",
+            "scope": "meta.structure.dictionary.json string.quoted.double.json",
+            "foreground": "var(white)"
+        },
+        {
+            "name": "diff.header",
+            "scope": "meta.diff, meta.diff.header",
+            "foreground": "var(yellow5)"
+        },
+        {
+            "name": "diff.deleted",
+            "scope": "markup.deleted",
+            "foreground": "var(cyan3)"
+        },
+        {
+            "name": "diff.inserted",
+            "scope": "markup.inserted",
+            "foreground": "var(yellow4)"
+        },
+        {
+            "name": "diff.changed",
+            "scope": "markup.changed",
+            "foreground": "var(yellow)"
+        },
+        {
+            "scope": "constant.numeric.line-number.find-in-files - match",
+            "foreground": "color(var(yellow3) alpha(0.63))"
+        },
+        {
+            "scope": "entity.name.filename.find-in-files",
+            "foreground": "var(yellow)"
+        }
+    ]
+}
