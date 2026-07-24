@@ -57,8 +57,16 @@
                 "shell_cmd": "make dtb_build",
             },
             {
+                "name": "dtb_elab",
+                "shell_cmd": "make dtb_elab",
+            },
+            {
                 "name": "dtb_run",
                 "shell_cmd": "make dtb_run",
+            },
+            {
+                "name": "dtb_view",
+                "shell_cmd": "make dtb_view",
             },
             {
                 "name": "dtb_clean",
@@ -86,6 +94,10 @@
                 "name": "program_flash",
                 "shell_cmd": "make program_flash",
             },
+            {
+                "name": "generate_impl_artefacts",
+                "shell_cmd": "make generate_impl_artefacts",
+            },
 
             // mc
             {
@@ -93,12 +105,18 @@
                 "shell_cmd": "make mc_create_release_project",
             },
             {
-                "name": "sw_build_app",
+                "name": "mc_build_app",
                 "shell_cmd": "make mc_build_app",
             },
             {
                 "name": "mc_clean",
                 "shell_cmd": "make mc_clean",
             },
+
+            // py
+            {
+                "name": "program_uart_flash",
+                "shell_cmd": "make program_uart_flash",
+            }
         ],
 }

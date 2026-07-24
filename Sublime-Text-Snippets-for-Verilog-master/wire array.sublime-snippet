@@ -1,7 +1,0 @@
-    <snippet>
-    <content><![CDATA[
-wire [{2}:0] ${1};
-]]></content>
-    <tabTrigger>wire</tabTrigger>
-    <scope>source.verilog</scope>
-</snippet>

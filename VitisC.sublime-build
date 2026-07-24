@@ -1,5 +1,4 @@
 {
-    "name": "Custom: Vitis C Cross Build",
     "selector": "source.c",
     "file_regex": "[\"\\[]?([/._a-zA-Z][-/._a-zA-Z0-9]+)\"?[,:] ?(?: line )?(\\d+)",
     "working_dir": "/tmp",

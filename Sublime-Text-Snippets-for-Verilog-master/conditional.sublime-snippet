@@ -1,7 +1,0 @@
-<snippet>
-    <content><![CDATA[
-? ${1}:${2};
-]]></content>
-    <tabTrigger>conditional ?</tabTrigger>
-    <scope>source.verilog</scope>
-</snippet>

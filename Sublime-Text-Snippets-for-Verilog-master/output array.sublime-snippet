@@ -1,7 +1,0 @@
-<snippet>
-    <content><![CDATA[
-output [0:${2}] ${1};
-]]></content>
-    <tabTrigger>output</tabTrigger>
-    <scope>source.verilog</scope>
-</snippet>

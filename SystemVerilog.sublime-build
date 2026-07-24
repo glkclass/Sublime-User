@@ -10,6 +10,7 @@
         [
             {
                 "name": "Vivado compile",
+                "working_dir": "$file_path",
                 "file_regex": "[\"\\[]?([/._a-zA-Z][-/._a-zA-Z0-9]+)\"?[,:] ?(?: line )?(\\d+)",
                 "shell_cmd": "echo Vivado compile in `pwd` ; source /tools/Xilinx/2025.1/Vivado/settings64.sh ; xvlog -sv -L UVM $file",
             },
