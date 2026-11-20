@@ -1,0 +1,24 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"Automatic Backups",
+		"ColorSchemeSelector",
+		"HexViewer",
+		"Ipynb Preview as Markdown",
+		"LSP",
+		"LSP-clangd",
+		"LSP-pyright",
+		"MarkdownPreview",
+		"Package Control",
+		"SideBarEnhancements",
+		"Smart VHDL",
+		"SublimeLinter",
+		"SublimeLinter-contrib-ruff",
+		"SublimeLinter-contrib-verilator",
+		"SystemVerilog",
+	],
+}

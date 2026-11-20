@@ -1,0 +1,22 @@
+{
+  "selector": "source.python",
+  "working_dir": "/home/anton.voloshchuk/design/oct",
+  "file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
+  "shell_cmd": "source .python_venv/bin/activate ; python3 -m py_compile $file",
+  "env": {
+    "AVV_DEBUG": "1",
+    "PYTHONPATH": "ams_scripts/lib/:algo/cu_algo_lib:../scrpt",
+  },
+  "syntax": "Packages/User/Log.sublime-syntax",
+  "variants":
+  [
+    {
+      "name": "Python Builde run",
+      "working_dir": "/home/anton.voloshchuk/design/oct",
+      "shell_cmd": "source .python_venv/bin/activate ; python3 -u $file",
+    }
+  ]
+}
+
+
+

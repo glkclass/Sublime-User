@@ -1,0 +1,12 @@
+{
+	"extensions":
+	[
+		"opt",
+		".env",
+		".user_env",
+		"env",
+		"user_env",
+		"filelist",
+		"flash_spi_interface_env",
+	],
+}

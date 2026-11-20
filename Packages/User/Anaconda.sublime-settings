@@ -1,0 +1,15 @@
+{
+    "swallow_startup_errors": true,
+    "auto_python_builder_enabled": false,
+	"anaconda_linter_mark_style": "stippled_underline",
+	"python_interpreter": "python3",
+	"anaconda_linter_phantoms": false,
+	"anaconda_linter_show_errors_on_save": true,
+	"pep8_max_line_length": 100,
+    "pep8_ignore":
+    [
+        "E309", "E402"
+    ],
+
+
+}

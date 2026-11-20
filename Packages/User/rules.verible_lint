@@ -1,0 +1,9 @@
+# Enable a rule (optional, if not in default ruleset)
+always-comb
+
+# Disable specific rules
+# -parameter-name-style
+
+# Configure a rule (e.g., set line length to 100 characters)
+parameter-name-style=parameter_style:ALL_CAPS;localparam_style:ALL_CAPS
+line-length=length:100

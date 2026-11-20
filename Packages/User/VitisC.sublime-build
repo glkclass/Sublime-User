@@ -1,0 +1,34 @@
+{
+    "selector": "source.c",
+    "file_regex": "[\"\\[]?([/._a-zA-Z][-/._a-zA-Z0-9]+)\"?[,:] ?(?: line )?(\\d+)",
+    "working_dir": "/tmp",
+    "syntax": "Packages/User/Log.sublime-syntax",
+    "shell_cmd": "echo Define build system, file regex, colored build output",
+    "env":{"BUILD_FILE_NAME": "$file"},
+
+    "variants":
+        [
+            // Vitis
+            {
+                "name": "compile",
+                "shell_cmd": "echo Vitis toolchain: compile $file; source /tools/Xilinx/2025.1/Vitis/settings64.sh ; mb-gcc -DSDT -Wall -Wextra -pedantic -O2 -I $file_path/../vitis_ws/oct640_cu_top/core_sys_core_mblaze_core/standalone_core_sys_core_mblaze_core/bsp/include -c $file",
+            },
+            // {
+            //     "name": "compile",
+            //     "working_dir": "/home/anton.voloshchuk/design/oct640_cu/bitstream-mipi-usb/mc/scripts",
+            //     "shell_cmd": "echo Vitis toolchain: compile $file; export COMPILE_FILE_NAME=$file; make compile_file",
+            // },
+
+            {
+                "name": "am_mc_build",
+                "working_dir": "/home/anton.voloshchuk/design/oct/bitstream-mipi-usb/mc/vitis_ws/oct640_cu_top_mc/build",
+                "shell_cmd": "echo Vitis toolchain: build oct ; source /tools/Xilinx/2025.1/Vitis/settings64.sh ; ninja",
+            },
+
+            {
+                "name": "am_mc_clean",
+                "working_dir": "/home/anton.voloshchuk/design/oct/bitstream-mipi-usb/mc/vitis_ws/oct640_cu_top_mc/build",
+                "shell_cmd": "echo Vitis toolchain: clean ; source /tools/Xilinx/2025.1/Vitis/settings64.sh ; ninja clean",
+            }
+    ]
+}

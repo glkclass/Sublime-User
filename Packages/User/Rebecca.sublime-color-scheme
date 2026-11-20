@@ -1,0 +1,290 @@
+{
+    "name": "Rebecca",
+    "author": "sameer",
+    "variables":
+    {
+        "black": "#000000",
+        "black2": "#194000",
+        "blue": "#74acff",
+        "blue2": "#5b6dd4",
+        "blue3": "#0022ff",
+        "blue4": "#0000ff",
+        "blue5": "#0300ff",
+        "cyan": "#07ac90",
+        "cyan2": "#1f7a53",
+        "cyan3": "#1f8d5d",
+        "cyan4": "#baefeb",
+        "cyan5": "#039532",
+        "green": "#178236",
+        "green2": "#31C950",
+        "grey": "#49483e",
+        "grey2": "#9f9f9f",
+        "orange": "#8c4600",
+        "orange2": "#FF692A",
+        "pink": "#f006e0",
+        "pink2": "#d300d1",
+        "pink3": "#ff00ff",
+        "purple": "#7100f5",
+        "red": "#fc0000",
+        "red2": "#FF6467",
+        "white": "#ffffff",
+        "white2": "#ddddda"
+    },
+    "globals":
+    {
+        "foreground": "var(black)",
+        "background": "var(white2)",
+        "caret": "var(blue5)",
+        "invisibles": "var(grey)",
+        "line_highlight": "var(grey)",
+        "selection": "var(cyan4)"
+    },
+    "rules":
+    [
+        // Log output
+        {
+            "name": "Log output",
+            "scope": "log_output",
+            "foreground": "var(blue)",
+        },
+
+        {
+            "name": "Log output bold",
+            "scope": "log_output.bold",
+            "font_style": "bold",
+            "foreground": "var(blue)",
+        },
+
+        {
+            "name": "Log output rule",
+            "scope": "log_output.rule",
+            "foreground": "var(blue3)",
+        },
+
+        {
+            "name": "Log output detail",
+            "scope": "log_output.detail",
+            "foreground": "var(blue)",
+        },
+
+        {
+            "name": "Log output file",
+            "scope": "log_output.file",
+            "foreground": "var(blue)",
+            "font_style": "underline"
+
+
+        },
+
+        // Fatal
+        {
+            "name": "Fatal",
+            "scope": "message.error.fatal",
+            "font_style": "bold"
+        },
+
+        // Error
+        {
+            "name": "Error",
+            "scope": "message.error",
+            "foreground": "var(red)",
+        },
+
+        {
+            "name": "Error bold",
+            "scope": "message.error.bold",
+            "font_style": "bold",
+        },
+
+        {
+            "name": "Error italic",
+            "scope": "message.error.italic",
+            "font_style": "italic",
+        },
+
+        {
+            "name": "Error underline",
+            "scope": "message.error.underline",
+            "foreground": "var(red2)",
+            "font_style": "underline",
+        },
+
+        // Warning
+        {
+            "name": "Warning",
+            "scope": "message.warning",
+            "foreground": "var(orange)",
+        },
+
+        {
+            "name": "Warning bold",
+            "scope": "message.warning.bold",
+            "font_style": "bold",
+        },
+
+        {
+            "name": "Warning italic",
+            "scope": "message.warning.italic",
+            "font_style": "italic",
+        },
+
+        {
+            "name": "Warning underline",
+            "scope": "message.warning.underline",
+            "foreground": "var(orange2)",
+            "font_style": "underline",
+        },
+
+        // Note
+        {
+            "name": "Note",
+            "scope": "message.note",
+            "foreground": "var(green)"
+        },
+
+        {
+            "name": "Note bold",
+            "scope": "message.note.bold",
+            "font_style": "bold",
+        },
+
+        {
+            "name": "Note italic",
+            "scope": "message.note.italic",
+            "font_style": "italic"
+        },
+
+        {
+            "name": "Note underline",
+            "scope": "message.note.underline",
+            "foreground": "var(green2)",
+            "font_style": "underline"
+        },
+
+        {
+            "name": "Info",
+            "scope": "message.info",
+            "foreground": "var(grey)"
+        },
+
+        // Base
+        {
+            "name": "Comment",
+            "scope": "comment",
+            "foreground": "var(grey2)",
+            "font_style": "bold  underline italic"
+        },
+        {
+            "name": "String",
+            "scope": "string",
+            "foreground": "var(pink)"
+        },
+        {
+            "name": "Number",
+            "scope": "constant.numeric",
+            "foreground": "var(blue3)"
+        },
+        {
+            "name": "Built-in constant",
+            "scope": "constant.language",
+            "foreground": "var(cyan)",
+            "font_style": "bold"
+        },
+        {
+            "name": "User-defined constant",
+            "scope": "constant.character, constant.other",
+            "foreground": "var(blue3)"
+        },
+        {
+            "name": "Variable",
+            "scope": "variable",
+            "foreground": "var(blue2)",
+            "font_style": "italic"
+        },
+        {
+            "name": "Keyword",
+            "scope": "keyword",
+            "foreground": "var(purple)",
+            "font_style": "bold"
+        },
+        {
+            "name": "Storage",
+            "scope": "storage",
+            "foreground": "var(pink2)"
+        },
+        {
+            "name": "Storage type",
+            "scope": "storage.type",
+            "foreground": "var(cyan3)",
+            "font_style": "italic"
+        },
+        {
+            "name": "Class name",
+            "scope": "entity.name.class",
+            "foreground": "var(red)",
+            "font_style": "underline"
+        },
+        {
+            "name": "Inherited class",
+            "scope": "entity.other.inherited-class",
+            "foreground": "var(red)",
+            "font_style": "italic underline"
+        },
+        {
+            "name": "Function name",
+            "scope": "entity.name.function",
+            "foreground": "var(blue4)",
+            "font_style": "italic"
+        },
+        {
+            "name": "Function argument",
+            "scope": "variable.parameter",
+            "foreground": "var(green)",
+            "font_style": "italic"
+        },
+        {
+            "name": "Tag name",
+            "scope": "entity.name.tag",
+            "foreground": "var(pink3)"
+        },
+        {
+            "name": "Tag attribute",
+            "scope": "entity.other.attribute-name",
+            "foreground": "var(orange)"
+        },
+        {
+            "name": "Library function",
+            "scope": "support.function",
+            "foreground": "var(green2)"
+        },
+        {
+            "name": "Library constant",
+            "scope": "support.constant",
+            "foreground": "var(cyan2)"
+        },
+        {
+            "name": "Library class/type",
+            "scope": "support.type, support.class",
+            "foreground": "var(cyan5)",
+            "font_style": "italic"
+        },
+        {
+            "name": "Library variable",
+            "scope": "support.other.variable",
+            "foreground": "var(white)",
+            "background": "var(black2)"
+        },
+        {
+            "name": "Invalid",
+            "scope": "invalid",
+            "foreground": "var(white)",
+            "background": "var(pink3)"
+        },
+        {
+            "name": "Invalid deprecated",
+            "scope": "invalid.deprecated",
+            "foreground": "var(white)",
+            "background": "var(blue)"
+        }
+    ]
+}
